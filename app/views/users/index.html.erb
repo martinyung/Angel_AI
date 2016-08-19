@@ -1,0 +1,14 @@
+
+
+
+<%@users.each do |user| %>
+	<%= link_to user.user.screen_name, user_path(user.id) %> <br>
+<%end%>
+
+
+<%= button_to "create", action: "create" %>
+
+<% @user = User.all %>
+<%@user.each do |user| %>
+	<%= link_to user.screen_name, user_path(user.id) %> <br>
+<%end%>

@@ -1,4 +1,6 @@
 <%@tweets.each do |tweet| %>
-	<%= tweet.text %>
-	<%= tweet.user.screen_name %><br>
+	<%= tweet.text %> <br>
 <%end%>
+
+
+<%= button_to "create", action: "create" %>

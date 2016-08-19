@@ -1,1 +1,3 @@
-<%= link_to "Get tweets", "/tweets" %>
+<%@tweets.each do |tweet| %>
+	<%= tweet.text %> <br>
+<%end%>
