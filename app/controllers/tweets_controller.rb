@@ -2,10 +2,21 @@ class TweetsController < ApplicationController
 	before_action :set_twitter_client
 
 	def get_tweets
-		set_user
-		
-		@tweets = @twitter.user_timeline(@user.twitter_user_id.to_i, count:200, max_id)
+		set_user		
+		x = @twitter.user_timeline(@user.twitter_user_id.to_i)
+		last_id = x.last.id  
+		prev_id = 0
+		@tweets =[]
+		i =1
+		while i <= 30 do
+			@tweets << @twitter.user_timeline(@user.twitter_user_id.to_i , max_id: last_id)
+	    	prev_id = last_id
+	    	last_id = @tweets.last.last.id
+	    	i+=1
+		end
+		return @tweets << x
 	end
+
 
 	def new
 
