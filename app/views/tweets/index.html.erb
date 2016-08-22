@@ -1,7 +1,5 @@
-<%@tweets.each do |outer| %>
-	<%outer.each do |tweet|%>
+<%@tweets.each do |tweet| %>
 	<%= tweet.text %> <br>
-	<%end%>
 <%end%>
 
 <%= button_to "create", action: "create" %>
