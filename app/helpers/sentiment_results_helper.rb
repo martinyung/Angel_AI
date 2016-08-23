@@ -1,0 +1,2 @@
+module SentimentResultsHelper
+end
