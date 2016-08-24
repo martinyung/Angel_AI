@@ -4,14 +4,17 @@ Rails.application.routes.draw do
 
 
   resources :users
-  resources :sentiment_results
+ 	resources :sentiment_results, only: [:index, :create]
+ 	resources :filtered_results, only: [:index, :create]
 
 
   resources :users do 
   	resources :tweets 
+  		resources :sentiment_results, only: [:show,:destroy]
+  			 resources :filtered_results, only: [:show, :destroy]
   end
 
-
+ 
 
 
 

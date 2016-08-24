@@ -1,17 +1,25 @@
-class SentimentResultsController < ApplicationController
+class SentimentResultsController < ApplicationController 
 
 
 
 	def index
-		User.all.each do |user|
-	 		pos_result = user.tweets.where(polarity: ":)").average(:polarity_confidence)
-	 		neg_result = user.tweets.where(polarity: ":(").average(:polarity_confidence)
 
+		@all_sentiment = SentimentResult.all
+	end
 
-	 		SentimentResult.create(user_id: user.id, positive_average: pos_result, negative_average: neg_result)
+	def show
+		@user = User.find(params[:user_id])
+		@sentiment = SentimentResult.find_by(user_id: @user.id)
+	end
 
+	def create
+
+	User.all.each do |user|
+		pos_result = user.tweets.where(polarity: ":)").average(:polarity_confidence)
+		neg_result = user.tweets.where(polarity: ":(").average(:polarity_confidence)
+		SentimentResult.create(user_id: user.id, positive_average: pos_result, negative_average: neg_result)
 	 	end
-	 	
+	 	redirect_to sentiment_results_path
 	end
 
 

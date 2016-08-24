@@ -1,6 +1,11 @@
 <% SentimentResult.all.each do |result| %>
 <%= result.user_id %> <br>
-<%= result.positive_average %> <br>
-<%= result.negative_average %>
+<h3>Positive Average </h3><%= result.positive_average %> <br>
+<h3>Negative Average </h3><%= result.negative_average %>
 
 <%end%>
+
+
+<%= button_to "create Sentiment", action: "create" %>
+
+<%= link_to "filter results", filtered_results_path %>
