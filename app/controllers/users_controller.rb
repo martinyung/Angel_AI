@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 	before_action :set_twitter_client
 
 	def get_user
-		@get_user = @twitter.search("suicide" "squad",lang:"en").take(1)
+		@get_user = @twitter.search("isolating myself, i need to interact w humans again",lang:"en").take(1)
 	end
 
 
