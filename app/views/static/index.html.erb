@@ -17,6 +17,8 @@
 			<strong> Low</strong>
 		<% end %>
 	</p>
-	<%= link_to "More Info", user_path(user.id) %>
+	<%= link_to "Twitter Profile", "https://twitter.com/#{user.screen_name}" %>
 	<hr>
 <% end %>
+
+@twitter.user_search('sachin')
