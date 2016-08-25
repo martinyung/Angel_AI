@@ -13,9 +13,10 @@ Rails.application.routes.draw do
 
  	resources :sentiment_results, only: [:index, :create]
  	resources :filtered_results, only: [:index, :create]
+  resources :tweets, only: [:create]
 
   resources :users do
-  	resources :tweets, only: [:create, :index, :show, :destroy]
+  	resources :tweets, only: [:index, :show, :destroy]
   	resources :sentiment_results, only: [:show, :destroy]
   	resources :filtered_results, only: [:show, :destroy]
   end

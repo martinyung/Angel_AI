@@ -2,19 +2,19 @@ class TweetsController < ApplicationController
 	before_action :set_twitter_client
 
 	def create
-		set_user
-		@tweets = get_tweets
-		@tweets.each do |tweet|
-			# analyse the sentiment of each tweet
-			result = Sentimentalizer.analyze(tweet.full_text)
-			# prevent duplicate tweets being store in database
-			@user.tweets.find_or_create_by(text: tweet.full_text, twitter_tweet_id: tweet.id, polarity: result.sentiment, polarity_confidence: result.overall_probability)
+		User.all.each do |user|
+			@tweets = get_tweets(user.id)
+			@tweets.each do |tweet|
+				# analyse the sentiment of each tweet
+				result = Sentimentalizer.analyze(tweet.full_text)
+				# prevent duplicate tweets being store in database
+				user.tweets.find_or_create_by(text: tweet.full_text, twitter_tweet_id: tweet.id, polarity: result.sentiment, polarity_confidence: result.overall_probability)
+			end
 		end
 		redirect_to '/users'
 	end
 
 	def index
-		@tweets = get_tweets
 	end
 
 	def show
@@ -22,8 +22,8 @@ class TweetsController < ApplicationController
 
 	private
 
-	def get_tweets
-		set_user		
+	def get_tweets(id)
+		@user = User.find(id)		
 		x = @twitter.user_timeline(@user.twitter_user_id.to_i)
 		last_id = x.last.id  
 		@tweets = []
@@ -39,9 +39,9 @@ class TweetsController < ApplicationController
 		return @tweets.flatten
 	end
 
-	def set_user
-		@user = User.find(params[:user_id])
-	end
+	# def set_user
+	# 	@user = User.find(params[:user_id])
+	# end
 
 	def set_twitter_client
 		@twitter = AngelAi::Application.config.twitter

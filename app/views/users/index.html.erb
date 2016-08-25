@@ -5,6 +5,10 @@
 	<%= link_to user.screen_name, user_path(user.id) %> <br>
 <%end%>
 
+<%= form_tag(tweets_path, method: "post") do %>
+  <%= submit_tag("Create Tweets") %>
+<% end %>
+
 <% if User.pluck(:id).all? { |e| Tweet.pluck(:user_id).include?(e) } and User.first %>
 	<%= form_tag(sentiment_results_path, method: "post") do %>
   	<%= submit_tag("Analysed Tweets Sentiment") %>
