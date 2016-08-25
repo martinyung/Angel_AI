@@ -1,3 +1,5 @@
-<%=link_to "get tweets", user_tweets_path(@user.id) %>
+<h1>Get all the tweets by <%=@user.screen_name %> for Analysis</h1>
 
-
+<%= form_tag(user_tweets_path(@user.id), method: "post") do %>
+  <%= submit_tag("Create Tweets") %>
+<% end %>

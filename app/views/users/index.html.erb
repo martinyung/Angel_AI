@@ -1,8 +1,8 @@
-
 <% @user = User.all %>
 <%@user.each do |user| %>
 	<%= link_to user.screen_name, user_path(user.id) %> <br>
-
-	<%= link_to "analyse sentiment", sentiment_results_path %> <br>
+	<% if user.tweets.first %>
+		<%= link_to "analyse sentiment", sentiment_results_path %> <br>
+	<% end %>
 <%end%>
 
