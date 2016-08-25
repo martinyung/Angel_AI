@@ -4,7 +4,7 @@ class FilteredResultsController < ApplicationController
 		@all_tweets_object = Tweet.all
 		@all_tweets = []
 		@all_tweets_object.each do |tweet|
-			@all_tweets << tweet.text
+		@all_tweets << tweet.text
 		end
 	end
 
@@ -39,7 +39,6 @@ class FilteredResultsController < ApplicationController
 					probability += tweet.filtered_result.probability
 				end
 			end
-			count
 			average = probability / count
 			user.update(suicidal_tweet_count: count, suicidal_tweets_probability_average: average)
 		end

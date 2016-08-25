@@ -1,9 +1,6 @@
 class TweetsController < ApplicationController
 	before_action :set_twitter_client
 
-	def new
-	end
-
 	def create
 		set_user
 		@tweets = get_tweets

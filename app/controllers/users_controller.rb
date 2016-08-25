@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 	before_action :set_twitter_client
 
 	def create
+		byebug
 		@users = get_user
 		@users.each do |user|
 			User.find_or_create_by(screen_name: user.user.screen_name, twitter_user_id: user.user.id)
@@ -20,7 +21,7 @@ class UsersController < ApplicationController
 	private
 
 	def get_user
-		@get_user = @twitter.search("die suicide kill", lang:"en").take(5)
+		@get_user = @twitter.search(params[:search], lang:"en").take(5)
 	end
 
 	def set_twitter_client
