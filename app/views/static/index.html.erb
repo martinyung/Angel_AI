@@ -7,7 +7,7 @@
 
 <h1>User Analysis Result</h1>
 <% User.all.each do |user| %>
-	<p>Name: <%= user.screen_name %></p>
+	<p>Name: <%= link_to user.screen_name, "https://twitter.com/#{user.screen_name}" %></p>
 	<p>Suicidal Tendency: 
 		<%if user.suicidal_tweet_count >= 10 and user.suicidal_tweets_probability_average >= 0.8 %>
 			<strong> High</strong>
@@ -17,8 +17,5 @@
 			<strong> Low</strong>
 		<% end %>
 	</p>
-	<%= link_to "Twitter Profile", "https://twitter.com/#{user.screen_name}" %>
 	<hr>
 <% end %>
-
-@twitter.user_search('sachin')
