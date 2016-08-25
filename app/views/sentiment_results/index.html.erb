@@ -1,5 +1,7 @@
 
-
-<%= button_to "create Sentiment", action: "create" %>
-
+<% @all_sentiment.each do |sentiment| %>
+	<p>User: <%= User.find(sentiment.user_id).screen_name %></p>
+	<p>Positive Average: <%= sentiment.positive_average %></p>
+	<p>Negative Average: <%= sentiment.negative_average %></p>
+<% end %>
 <%= link_to "filter results", filtered_results_path %>

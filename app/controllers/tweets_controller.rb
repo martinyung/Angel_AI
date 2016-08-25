@@ -8,7 +8,9 @@ class TweetsController < ApplicationController
 		set_user
 		@tweets = get_tweets
 		@tweets.each do |tweet|
+			# analyse the sentiment of each tweet
 			result = Sentimentalizer.analyze(tweet.full_text)
+			# prevent duplicate tweets being store in database
 			@user.tweets.find_or_create_by(text: tweet.full_text, twitter_tweet_id: tweet.id, polarity: result.sentiment, polarity_confidence: result.overall_probability)
 		end
 		redirect_to '/users'
@@ -30,6 +32,7 @@ class TweetsController < ApplicationController
 		@tweets = []
 		@tweets << x
 	
+		# looping through tweets to get more than 200 tweets per query
 		i = 1
 		while i <= 1 do
 			@tweets << @twitter.user_timeline(@user.twitter_user_id.to_i , max_id: last_id)

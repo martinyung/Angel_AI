@@ -1,17 +1,14 @@
 class FilteredResultsController < ApplicationController 
 
-
 	def index
 		@all_tweets_object = Tweet.all
 		@all_tweets = []
 		@all_tweets_object.each do |tweet|
 			@all_tweets << tweet.text
 		end
-		
 	end
 
 	def create
-
 		@negative_tweets_array = []
 		User.all.each do |user|
 			@negative_tweets = user.tweets.where(polarity: ":(")
@@ -30,7 +27,6 @@ class FilteredResultsController < ApplicationController
 		get_suicidal_count
 		
 	end
-
 
 	def get_suicidal_count
 		User.all.each do |user|
