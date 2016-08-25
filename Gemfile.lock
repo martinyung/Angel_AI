@@ -40,6 +40,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     arel (7.1.1)
+    bcrypt (3.1.11)
     buftok (0.2.0)
     builder (3.2.2)
     byebug (9.0.5)
@@ -196,6 +197,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt
   byebug
   coffee-rails (~> 4.2)
   figaro
