@@ -1,3 +1,5 @@
+<h1>Users Found and Created in Database</h1>
+
 <% @user = User.all %>
 <%@user.each do |user| %>
 	<%= link_to user.screen_name, user_path(user.id) %> <br>

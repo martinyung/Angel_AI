@@ -4,3 +4,19 @@
 <%= form_tag("/users", method: "post") do %>
   <%= submit_tag("Create Users") %>
 <% end %>
+
+<h1>User Analysis Result</h1>
+<% User.all.each do |user| %>
+	<p>Name: <%= user.screen_name %></p>
+	<p>Suicidal Tendency: 
+		<%if user.suicidal_tweet_count >= 10 and user.suicidal_tweets_probability_average >= 0.8 %>
+			<strong> High</strong>
+		<% elsif user.suicidal_tweet_count >= 5 and user.suicidal_tweets_probability_average >= 0.5 %>
+			<strong> Moderate</strong>
+		<% else %>
+			<strong> Low</strong>
+		<% end %>
+	</p>
+	<%= link_to "More Info", user_path(user.id) %>
+	<hr>
+<% end %>

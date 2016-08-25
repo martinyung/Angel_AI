@@ -20,15 +20,16 @@ class FilteredResultsController < ApplicationController
 				end
 				i = 0
 				@negative_tweets.each do |tweet|
-				FilteredResult.create(tweet_id: tweet.id, label: @result.result[i].first["label"], probability: @result.result[i].first["probability"])
+				FilteredResult.find_or_create_by(tweet_id: tweet.id, label: @result.result[i].first["label"], probability: @result.result[i].first["probability"])
 				i += 1
 			end
 		end
-		get_suicidal_count
-		
+		get_suicidal_result
 	end
 
-	def get_suicidal_count
+	private
+
+	def get_suicidal_result
 		User.all.each do |user|
 			count = 0
 			probability = 0
@@ -42,8 +43,6 @@ class FilteredResultsController < ApplicationController
 			average = probability / count
 			user.update(suicidal_tweet_count: count, suicidal_tweets_probability_average: average)
 		end
-byebug
+		redirect_to '/'
 	end
-
-
 end
