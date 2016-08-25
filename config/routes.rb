@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  	#root 'static#index'
-  	root 'admins#new'
+  	root 'static#index'
 
 	resources :users
 		resources :sentiment_results, only: [:index, :create]
@@ -16,6 +15,12 @@ Rails.application.routes.draw do
 
  	resources :admins, only: [:new, :create]
   	get "/get_user" => "static#index"
+  	post '/admins' => 'admins#create'
+
+  	get 'signup' => 'admins#new'
+  	get '/login' => 'sessions#new'
+  	post '/login' => 'sessions#create'
+  	get '/logout' => 'sessions#destroy'
 
 end
 

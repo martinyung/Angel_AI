@@ -1,6 +1,3 @@
-<% if flash[:alert] %>
-  <%= flash[:alert] %>
-<% end %>  
 <h2>Sign Up</h2>
 
 <%= form_for @admin do |form| %>
@@ -22,17 +19,3 @@
      <%= form.submit %>
 <%end%>
 
-<h2>Login</h2>
-<%= form_for @admin do |form| %>
-  <div>
-     <%= form.label :email %>
-     <%= form.text_field :email %>
-  </div>
-   
-  <div>
-     <%= form.label :password %>
-     <%= form.password_field :password %>
-  </div>
-
-     <%= form.submit "Login" %>
-<%end%>
