@@ -6,6 +6,10 @@
   <%= submit_tag("Search Users") %>
 <% end %>
 
+<% if @error %>
+	<%= @error %>
+<% end %>
+
 <h1>User Analysis Result</h1>
 <% User.all.each do |user| %>
 	<p>Name: <%= link_to user.screen_name, "https://twitter.com/#{user.screen_name}", target: "_blank" %></p>
