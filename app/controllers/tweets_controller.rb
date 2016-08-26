@@ -2,16 +2,21 @@ class TweetsController < ApplicationController
 	before_action :set_twitter_client
 
 	def create
-		User.all.each do |user|
-			@tweets = get_tweets(user.id)
-			@tweets.each do |tweet|
-				# analyse the sentiment of each tweet
-				result = Sentimentalizer.analyze(tweet.full_text)
-				# prevent duplicate tweets being store in database
-				user.tweets.find_or_create_by(text: tweet.full_text, twitter_tweet_id: tweet.id, polarity: result.sentiment, polarity_confidence: result.overall_probability)
+		if logged_in?
+			User.all.each do |user|
+				@tweets = get_tweets(user.id)
+				@tweets.each do |tweet|
+					# analyse the sentiment of each tweet
+					result = Sentimentalizer.analyze(tweet.full_text)
+					# prevent duplicate tweets being store in database
+					user.tweets.find_or_create_by(text: tweet.full_text, twitter_tweet_id: tweet.id, polarity: result.sentiment, polarity_confidence: result.overall_probability)
+				end
 			end
-		end
-		redirect_to '/users'
+			redirect_to '/users'
+		else
+			flash[:alert] = "You are not logged in" 
+			redirect_to '/signup'
+		end	
 	end
 
 	def index

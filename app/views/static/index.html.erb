@@ -1,28 +1,33 @@
-<h1>Find twitter users who has twitted about suicide related tweets in the past 7 days.</h1><br>
+<% if logged_in? %>
+	<h1>Find twitter users who has twitted about suicide related tweets in the past 7 days.</h1><br>
 
-<%= form_tag("/users", method: "post") do %>
-	<%= label_tag("Please enter search keyword (maximum 10 words, seperated by 'white space':") %><br>
-  <%= text_field_tag(:search) %>
-  <%= submit_tag("Search Users") %>
-<% end %>
+	<%= form_tag("/users", method: "post") do %>
+		<%= label_tag("Please enter search keyword (maximum 10 words, seperated by 'white space':") %><br>
+	  <%= text_field_tag(:search) %>
+	  <%= submit_tag("Search Users") %>
+	<% end %>
 
-<% if @error %>
-	<%= @error %>
-<% end %>
+	<% if @error %>
+		<%= @error %>
+	<% end %>
 
-<h1>User Analysis Result</h1>
-<% User.all.each do |user| %>
-	<p>Name: <%= link_to user.screen_name, "https://twitter.com/#{user.screen_name}", target: "_blank" %></p>
-	<p>Suicidal Tendency:
-		<% if user.suicidal_tweet_count != nil or user.suicidal_tweets_probability_average != nil %> 
-			<%if user.suicidal_tweet_count >= 20 and user.suicidal_tweets_probability_average >= 0.9 %>
-				<strong> High</strong>
-			<% elsif user.suicidal_tweet_count >= 15 and user.suicidal_tweets_probability_average >= 0.8 %>
-				<strong> Moderate</strong>
-			<% else %>
-				<strong> Low</strong>
+	<h1>User Analysis Result</h1>
+	<% User.all.each do |user| %>
+		<p>Name: <%= link_to user.screen_name, "https://twitter.com/#{user.screen_name}", target: "_blank" %></p>
+		<p>Suicidal Tendency:
+			<% if user.suicidal_tweet_count != nil or user.suicidal_tweets_probability_average != nil %> 
+				<%if user.suicidal_tweet_count >= 20 and user.suicidal_tweets_probability_average >= 0.9 %>
+					<strong> High</strong>
+				<% elsif user.suicidal_tweet_count >= 15 and user.suicidal_tweets_probability_average >= 0.8 %>
+					<strong> Moderate</strong>
+				<% else %>
+					<strong> Low</strong>
+				<% end %>
 			<% end %>
-		<% end %>
-	</p>
-	<hr>
+		</p>
+		<hr>
+	<% end %>
+<%else%>
+	<%flash[:alert] = "You are not logged in"%>	
+	<br><%= flash[:alert] %>
 <% end %>

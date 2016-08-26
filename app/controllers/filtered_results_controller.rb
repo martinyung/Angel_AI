@@ -1,11 +1,16 @@
 class FilteredResultsController < ApplicationController 
 
 	def index
-		@all_tweets_object = Tweet.all
-		@all_tweets = []
-		@all_tweets_object.each do |tweet|
-		@all_tweets << tweet.text
-		end
+		if logged_in?
+			@all_tweets_object = Tweet.all
+			@all_tweets = []
+			@all_tweets_object.each do |tweet|
+			@all_tweets << tweet.text
+			end
+		else
+			flash[:alert] = "You are not logged in" 
+			redirect_to '/signup'
+		end		
 	end
 
 	def create

@@ -1,7 +1,12 @@
 class SentimentResultsController < ApplicationController 
 
 	def index
-		@all_sentiment = SentimentResult.all
+		if logged_in?			
+			@all_sentiment = SentimentResult.all
+		else	
+			flash[:alert] = "You are not logged in" 
+			redirect_to '/signup'
+		end
 	end
 
 	def show
