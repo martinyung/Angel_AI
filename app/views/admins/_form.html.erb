@@ -2,24 +2,50 @@
   <%= flash[:alert] %>
 <% end %>
 
-<h2>Sign Up</h2>
-
-<%= form_for @admin do |form| %>
-  <div>
-     <%= form.label :name %>
-     <%= form.text_field :name %>
+<div class="container" style="margin-top:20px;">
+  <div class="panel panel default" style="border:1px solid #ddd; width: 30%;">
+    <div class="panel-body" style="width: 70%;">
+  <h2>Sign Up</h2>
+  <%= form_for @admin do |form| %>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-4">
+          <%= form.label :name ,html: {class: "form-control"} %>
+        </div>
+        <div class="col-md-4">
+          <%= form.text_field :name, html: {class: "form-control"}, html: {style: "padding-left:0px;"} %>
+        </div>
+      </div>  
+    </div> 
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-4">
+          <%= form.label :email,html: {class: "form-control"} %>
+        </div>
+        <div class="col-md-3">
+          <%= form.text_field :email, html: {class: "form-control"} %>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-4">
+          <%= form.label :password, html: {class: "form-control"} %>
+        </div>
+        <div class="col-md-3">  
+          <%= form.password_field :password, html: {class: "form-control"} %>
+       </div>
+      </div> 
+    </div>
+    <div class="form-group">
+       <%= form.submit "Submit", class: "btn btn-primary", html: {class: "form-control"} %> 
+    </div>
+  <%end%>
+    </div>
+>>>>>>> master
   </div>
+</div>
 
-  <div>
-     <%= form.label :email %>
-     <%= form.text_field :email %>
-  </div>
-   
-  <div>
-     <%= form.label :password %>
-     <%= form.password_field :password %>
-  </div>
 
-     <%= form.submit %>
-<%end%>
+
 
