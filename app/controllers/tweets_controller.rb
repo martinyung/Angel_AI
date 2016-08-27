@@ -1,22 +1,18 @@
 class TweetsController < ApplicationController
 	before_action :set_twitter_client
+	before_action :require_login,  only: [:index, :create]
 
 	def create
-		if logged_in?
-			User.all.each do |user|
-				@tweets = get_tweets(user.id)
-				@tweets.each do |tweet|
-					# analyse the sentiment of each tweet
-					result = Sentimentalizer.analyze(tweet.full_text)
-					# prevent duplicate tweets being store in database
-					user.tweets.find_or_create_by(text: tweet.full_text, twitter_tweet_id: tweet.id, polarity: result.sentiment, polarity_confidence: result.overall_probability)
-				end
+		User.all.each do |user|
+			@tweets = get_tweets(user.id)
+			@tweets.each do |tweet|
+				# analyse the sentiment of each tweet
+				result = Sentimentalizer.analyze(tweet.full_text)
+				# prevent duplicate tweets being store in database
+				user.tweets.find_or_create_by(text: tweet.full_text, twitter_tweet_id: tweet.id, polarity: result.sentiment, polarity_confidence: result.overall_probability)
 			end
-			redirect_to '/users'
-		else
-			flash[:alert] = "You are not logged in" 
-			redirect_to '/signup'
-		end	
+		end
+		redirect_to '/users'
 	end
 
 	def index
@@ -44,9 +40,12 @@ class TweetsController < ApplicationController
 		return @tweets.flatten
 	end
 
-	# def set_user
-	# 	@user = User.find(params[:user_id])
-	# end
+	def require_login
+		unless logged_in?
+			flash[:alert] = "You must be logged in to access this section"
+			redirect_to '/signup'
+		end
+	end
 
 	def set_twitter_client
 		@twitter = AngelAi::Application.config.twitter

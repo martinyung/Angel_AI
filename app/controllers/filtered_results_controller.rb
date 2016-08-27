@@ -1,16 +1,12 @@
 class FilteredResultsController < ApplicationController 
+	before_action :require_login,  only: [:index, :create]
 
 	def index
-		if logged_in?
-			@all_tweets_object = Tweet.all
-			@all_tweets = []
-			@all_tweets_object.each do |tweet|
-			@all_tweets << tweet.text
-			end
-		else
-			flash[:alert] = "You are not logged in" 
-			redirect_to '/signup'
-		end		
+		@all_tweets_object = Tweet.all
+		@all_tweets = []
+		@all_tweets_object.each do |tweet|
+		@all_tweets << tweet.text
+		end
 	end
 
 	def create
@@ -49,4 +45,12 @@ class FilteredResultsController < ApplicationController
 		end
 		redirect_to '/'
 	end
+
+	def require_login
+		unless logged_in?
+			flash[:alert] = "You must be logged in to access this section"
+			redirect_to '/signup'
+		end
+	end
+
 end
