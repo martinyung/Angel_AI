@@ -1,4 +1,5 @@
 class SentimentResultsController < ApplicationController 
+	before_action :require_login,  only: [:index, :create, :show]
 
 	def index
 		@all_sentiment = SentimentResult.all
@@ -17,4 +18,13 @@ class SentimentResultsController < ApplicationController
 		end
 		 redirect_to sentiment_results_path
 	end
+
+	private
+	def require_login
+		unless logged_in?
+			flash[:alert] = "You must be logged in to access this section"
+			redirect_to '/signup'
+		end
+	end
+
 end

@@ -1,5 +1,6 @@
 class TweetsController < ApplicationController
 	before_action :set_twitter_client
+	before_action :require_login,  only: [:index, :create]
 
 	def create
 		User.all.each do |user|
@@ -39,6 +40,13 @@ class TweetsController < ApplicationController
 	    	i += 1
 		end
 		return @tweets.flatten
+	end
+
+	def require_login
+		unless logged_in?
+			flash[:alert] = "You must be logged in to access this section"
+			redirect_to '/signup'
+		end
 	end
 
 	def set_twitter_client

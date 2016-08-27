@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	before_action :set_twitter_client
+	before_action :require_login,  only: [:index, :create, :show]
 
 	def create
 		if params[:search].split.count > 0 and params[:search].split.count < 11
@@ -12,7 +13,6 @@ class UsersController < ApplicationController
 			@error = "Invalid search input, please try again"
 			render "static/index"
 		end
-		
 	end
 
 	def index
@@ -28,4 +28,12 @@ class UsersController < ApplicationController
 	def set_twitter_client
 		@twitter = AngelAi::Application.config.twitter
 	end
+
+	def require_login
+		unless logged_in?
+			flash[:alert] = "You must be logged in to access this section"
+			redirect_to '/signup'
+		end
+	end
+
 end

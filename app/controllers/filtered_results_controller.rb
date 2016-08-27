@@ -1,4 +1,5 @@
 class FilteredResultsController < ApplicationController 
+	before_action :require_login,  only: [:index, :create]
 
 	def index
 	end
@@ -38,4 +39,12 @@ class FilteredResultsController < ApplicationController
 		end
 		redirect_to '/'
 	end
+
+	def require_login
+		unless logged_in?
+			flash[:alert] = "You must be logged in to access this section"
+			redirect_to '/signup'
+		end
+	end
+
 end
