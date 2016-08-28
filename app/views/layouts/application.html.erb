@@ -12,11 +12,39 @@
   </head>
 
   <body>
-  <% if current_user %>
-  	Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
-  <% else %>
-  	<%= link_to "Login", '/login' %> | <%=link_to 'Signup', '/signup' %>
-  <%end%>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <% if logged_in? %>
+            <a class="navbar-brand" href="/get_user">Angel.AI</a>
+          <% else %>
+            <a class="navbar-brand" href="/">Angel.AI</a>
+          <% end %>              
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <p class="nav navbar-nav" style="margin-top: 15px;">
+            <% if !logged_in? %>
+              <%= link_to "Login |", '/login' %>
+              <%=link_to 'Signup', '/signup' %>
+            <% end %>  
+          </p>
+          <p class="nav navbar-nav navbar-right" style="margin-top: 15px;">
+            <% if logged_in? %>
+              Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
+            <% end %>  
+          </p>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
     <%= yield %>
   </body>
 </html>
