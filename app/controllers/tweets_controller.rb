@@ -25,12 +25,6 @@ class TweetsController < ApplicationController
 		redirect_to '/users'
 	end
 
-	def index
-	end
-
-	def show
-	end
-
 	private
 
 	def get_tweets(id)
