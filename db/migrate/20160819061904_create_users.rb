@@ -4,9 +4,6 @@ class CreateUsers < ActiveRecord::Migration[5.0]
 
     	t.string :screen_name
     	t.string :twitter_user_id
-    	
-
-
       t.timestamps
     end
   end
