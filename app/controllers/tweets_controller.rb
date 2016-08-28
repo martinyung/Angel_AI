@@ -19,8 +19,6 @@ class TweetsController < ApplicationController
 	end
 
 	def show
-		@from_twitter = get_tweets(1)
-		@from_db = User.find(1).tweets
 	end
 
 	private
