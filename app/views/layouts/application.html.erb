@@ -22,10 +22,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <% if logged_in %>
-            <a class="navbar-brand" href="/">Angel.AI</a>
+          <% if logged_in? %>
+            <a class="navbar-brand" href="/get_user">Angel.AI</a>
           <% else %>
-            <a class="navbar-brand" href="/signup">Angel.AI</a>
+            <a class="navbar-brand" href="/">Angel.AI</a>
           <% end %>              
         </div>
 

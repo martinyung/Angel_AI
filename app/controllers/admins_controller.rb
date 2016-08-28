@@ -10,7 +10,7 @@ class AdminsController < ApplicationController
 			session[:admin_id] = @admin.id 
 			redirect_to '/get_user'
 		else
-			redirect_to 'signup'
+			redirect_to '/'
 		end
 	end
 

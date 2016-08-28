@@ -45,7 +45,7 @@ class TweetsController < ApplicationController
 	def require_login
 		unless logged_in?
 			flash[:alert] = "You must be logged in to access this section"
-			redirect_to '/signup'
+			redirect_to '/'
 		end
 	end
 
