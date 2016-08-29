@@ -30,11 +30,16 @@ class FilteredResultsController < ApplicationController
 				end
 
 				if @suicidal_count > 0
+					tweet_count = user.tweets.count
+					suicidal_count_percent = (@suicidal_count / tweet_count.to_f) * 100
 					average = @probability / @suicidal_count
-					user.update(suicidal_tweet_count: @suicidal_count, suicidal_tweets_probability_average: average)
+					suicidal_index = suicidal_count_percent * average
+					user.update(suicidal_tweet_count: @suicidal_count, suicidal_tweets_probability_average: average, suicidal_index: suicidal_index)
 				else
-					user.update(suicidal_tweet_count: @suicidal_count, suicidal_tweets_probability_average: 0)
+					user.update(suicidal_tweet_count: @suicidal_count, suicidal_tweets_probability_average: 0, suicidal_index: 0)
 				end
+			else # no negative tweets
+				user.update(suicidal_tweet_count: 0, suicidal_tweets_probability_average: 0, suicidal_index: 0)
 			end
 		end
 		redirect_to '/get_user'

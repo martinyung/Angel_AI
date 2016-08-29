@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20160829093611) do
     t.datetime "updated_at",                          null: false
     t.integer  "suicidal_tweet_count"
     t.float    "suicidal_tweets_probability_average"
-    t.integer  "suicidal_index"
+    t.float    "suicidal_index"
   end
 
 end
