@@ -12,7 +12,7 @@ class FilteredResultsController < ApplicationController
 				@negative_tweets_array << tweet.text # getting negative tweets by this user
 			end
 
-			if @negative_tweets_array
+			if @negative_tweets_array.count > 0
 				@result = Monkeylearn.classifiers.classify('cl_Y8MidxpP', @negative_tweets_array, sandbox: true)
 			
 				@count = 0 # negative tweet count
