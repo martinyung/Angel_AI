@@ -1,3 +1,11 @@
+<div id="overlay">
+	<div class="spinner">
+	  <div class="bounce1"></div>
+	  <div class="bounce2"></div>
+	  <div class="bounce3"></div>
+	</div>
+</div>
+
 <% @all_sentiment.each do |sentiment| %>
 	<p>User: <%= User.find(sentiment.user_id).screen_name %></p>
 	<p>Positive Average: <%= sentiment.positive_average %></p>
@@ -5,5 +13,5 @@
 <% end %>
 
 <%= form_tag(filtered_results_path, method: "post") do %>
-	<%= submit_tag("Final Suicidal Analysis") %>
+	<%= submit_tag("Final Suicidal Analysis", id: 'result-btn') %>
 <% end %>

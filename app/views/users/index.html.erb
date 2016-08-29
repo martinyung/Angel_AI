@@ -1,3 +1,10 @@
+<div id="overlay">
+	<div class="spinner">
+	  <div class="bounce1"></div>
+	  <div class="bounce2"></div>
+	  <div class="bounce3"></div>
+	</div>
+</div>
 
 <h1>Users Found and Created in Database</h1>
 
@@ -7,7 +14,7 @@
 <%end%>
 
 <%= form_tag(tweets_path, method: "post") do %>
-  <%= submit_tag("Create Tweets") %>
+  <%= submit_tag("Create Tweets", id: 'tweet-btn') %>
 <% end %>
 
 <% if User.pluck(:id).all? { |e| Tweet.pluck(:user_id).include?(e) } and User.first %>
