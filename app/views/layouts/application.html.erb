@@ -4,9 +4,8 @@
     <title>AngelAi</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   </head>
@@ -29,7 +28,7 @@
         <!-- Top Menu Items -->
       <ul class="nav navbar-nav navbar-right">
         <% if !logged_in? %>
-          <li><%= link_to "Login |", '/login' %></li>
+          <li><%=link_to "Login", '/login' %></li>
           <li><%=link_to 'Signup', '/signup' %></li>
         <% end %>
         <li class="dropdown">
@@ -40,8 +39,14 @@
         <% end %>
         </li>
       </ul> 
-    </nav>
-
+    </nav>  
+    <div class="overlay">
+      <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+    </div>
     <%= yield %>
   </body>
 </html>
