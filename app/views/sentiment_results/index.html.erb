@@ -1,15 +1,8 @@
-<div id="overlay">
-	<div class="spinner">
-	  <div class="bounce1"></div>
-	  <div class="bounce2"></div>
-	  <div class="bounce3"></div>
-	</div>
-</div>
-
 <div>
 	<h3 style="text-align:center;"> Bar Chart depicting the average postitive tweets and average negative tweets per user </h3>
 </div>	
 <br>
+
 <% @all_sentiment.each do |sentiment| %>
 	<div class="col-md-6">
 		<div class='sentiment-table' data-positive='<%= sentiment.positive_average %>' data-negative='<%= sentiment.negative_average %>' data-name='<%=User.find(sentiment.user_id).screen_name%>'%>
@@ -17,7 +10,7 @@
 	</div>
 <% end %>
 
-<%= form_tag(filtered_results_path, method: "post") do %>
+<%= form_tag(filtered_results_path, method: "post", class: 'form-overlay') do %>
 	<%= submit_tag("Final Suicidal Analysis", id: 'result-btn') %>
 <% end %>
     <!--Load the AJAX API-->
