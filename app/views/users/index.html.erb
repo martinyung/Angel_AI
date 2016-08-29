@@ -1,18 +1,29 @@
-
-<h1>Users Found and Created in Database</h1>
-
-<% @user = User.all %>
-<%@user.each do |user| %>
-	<%= link_to user.screen_name, user_path(user.id) %> <br>
-<%end%>
-
-<%= form_tag(tweets_path, method: "post", class: 'form-overlay') do %>
-  <%= submit_tag("Create Tweets", id: 'tweet-btn') %>
-<% end %>
-
-<% if User.pluck(:id).all? { |e| Tweet.pluck(:user_id).include?(e) } and User.first %>
-	<%= form_tag(sentiment_results_path, method: "post") do %>
-  	<%= submit_tag("Analysed Tweets Sentiment") %>
-	<% end %>
-<% end %>
-
+<div class="row">
+<div class="col-md-3"></div>
+	<div class=col-md-6>
+		<h2>Twitter Users in Database</h2>
+		<table class="table table-bordered table-striped">
+			<tr>
+				<th>Twitter Username</th>
+				<th>Tweets Analysed</th>
+			</tr>
+				<% @user = User.all %>
+				<%@user.each do |user| %>
+			<tr>
+				<td><%= user.screen_name %></td>
+				<td><%= user.tweets.count %></td>
+			</tr>
+			<%end%>
+		</table>
+		<%= form_tag(tweets_path, method: "post", class: 'form-overlay') do %>
+			  <%= submit_tag("Create Tweets", class: 'btn btn-primary') %>
+			<% end %>
+			<hr>
+		<% if User.pluck(:id).all? { |e| Tweet.pluck(:user_id).include?(e) } and User.first %>
+				<%= form_tag(sentiment_results_path, method: "post") do %>
+			  	<%= submit_tag("Analysed Tweets Sentiment", class: 'btn btn-primary') %>
+				<% end %>
+			<% end %>
+	</div>
+<div class="col-md-3"></div>
+</div>
