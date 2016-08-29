@@ -11,5 +11,8 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+ *= require font-awesome
+ *= require sb-admin/css/sb-admin
+ *= require sb-admin/css/plugins/morris
  *= require_self
  */
