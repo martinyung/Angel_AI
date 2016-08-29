@@ -6,7 +6,7 @@
 	<%= link_to user.screen_name, user_path(user.id) %> <br>
 <%end%>
 
-<%= form_tag(tweets_path, method: "post") do %>
+<%= form_tag(tweets_path, method: "post", class: 'form-overlay') do %>
   <%= submit_tag("Create Tweets", id: 'tweet-btn') %>
 <% end %>
 

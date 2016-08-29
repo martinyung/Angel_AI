@@ -14,22 +14,12 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
+//= require_tree .
 //= require plugins/morris/raphael.min.js
 //= require plugins/morris/morris.min.js
 //= require plugins/morris/morris-data.js
-//= require_tree .
 
 
-$(document).on('ready page:load', function(){
-	$('#search-btn').click(function(){
-		$('.overlay').css('display', 'initial');
-	});
-	$('#tweet-btn').click(function() {
-		$('.overlay').css('display', 'initial');
-	});
-	$('#result-btn').click(function() {
-		$('.overlay').css('display', 'initial');
-	});
-});
+
 
 

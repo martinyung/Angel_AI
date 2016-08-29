@@ -4,6 +4,6 @@
 	<p>Negative Average: <%= sentiment.negative_average %></p>
 <% end %>
 
-<%= form_tag(filtered_results_path, method: "post") do %>
+<%= form_tag(filtered_results_path, method: "post", class: 'form-overlay') do %>
 	<%= submit_tag("Final Suicidal Analysis", id: 'result-btn') %>
 <% end %>
