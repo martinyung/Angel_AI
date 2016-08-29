@@ -19,6 +19,19 @@
 $(document).ready(function(){
 	$('#search-btn').click(function(){
 		$('#overlay').css('display', 'initial');
-		
 	});
 });
+
+
+$(document).ready(function(){
+	$('#tweet-btn').click(function() {
+		$('#overlay').css('display', 'initial');
+	});
+});
+
+$(document).ready(function(){
+	$('#result-btn').click(function() {
+		$('#overlay').css('display', 'initial');
+	});
+});
+
