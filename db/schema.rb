@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160825024153) do
+ActiveRecord::Schema.define(version: 20160829093611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20160825024153) do
     t.datetime "updated_at",                          null: false
     t.integer  "suicidal_tweet_count"
     t.float    "suicidal_tweets_probability_average"
+    t.float    "suicidal_index"
   end
 
 end
