@@ -121,12 +121,25 @@
 <a id="high-risk">
 <br>
 <br>
-<div class ="form-group" style="text-align:center;">
-  <%= form_tag("/users", method: "post", class: 'form-overlay') do %>
-  <%= text_field_tag 'search', nil, placeholder: 'Enter search term(max 10) seperated by white space', size: 100 %>
-  <%= submit_tag("Search Users", id: 'search-btn') %>
-  <% end %>
+<div class="row">
+  <div class="col-lg-2"></div>
+  <div class="col-lg-8">
+    <div class="input-group">
+      <%= form_tag("/users", method: "post", class: 'form-overlay') do %>
+        <%= text_field_tag 'search', nil, placeholder: 'Enter search term (max 10) seperated by white space', size: 100, class: 'form-control' %>
+        <%= submit_tag("Search", class: 'btn btn-primary form-control') %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-lg-2"></div>
 </div>
+
+<!-- <div class ="form-group" style="text-align:center;">
+  <%= form_tag("/users", method: "post", class: 'form-overlay') do %>
+  <%= text_field_tag 'search', nil, placeholder: 'Enter search term (max 10) seperated by white space', size: 100 %>
+  <%= submit_tag("Search", class: 'btn btn-primary') %>
+  <% end %>
+</div> -->
 <% if @error %>
   <%= @error %>
 <% end %>
