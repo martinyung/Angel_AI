@@ -3,12 +3,16 @@
 </div>	
 <br>
 
+<div class="row">
 <% @all_sentiment.each do |sentiment| %>
-	<div class="col-md-6">
-		<div class='sentiment-table' data-positive='<%= sentiment.positive_average %>' data-negative='<%= sentiment.negative_average %>' data-name='<%=User.find(sentiment.user_id).screen_name%>'%>
-		</div>
-	</div>
+  <div class="col-md-1"></div>
+  <div class="col-md-5">
+    <div class='sentiment-table' data-positive='<%= sentiment.positive_average %>' data-negative='<%= sentiment.negative_average %>' data-name='<%=User.find(sentiment.user_id).screen_name%>'%>
+    </div>
+  </div>
+  
 <% end %>
+</div>
 
 <%= form_tag(filtered_results_path, method: "post", class: 'form-overlay') do %>
 	<%= submit_tag("Final Suicidal Analysis", id: 'result-btn') %>

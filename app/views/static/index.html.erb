@@ -199,15 +199,13 @@
 <% User.all.each do |user| %>
 <p>Name: <%= link_to user.screen_name, "https://twitter.com/#{user.screen_name}", target: "_blank" %></p>
 <p>Suicidal Tendency:
-    <% if user.suicidal_tweet_count != nil or user.suicidal_tweets_probability_average != nil %> 
-        <%if user.suicidal_tweet_count >= 20 and user.suicidal_tweets_probability_average >= 0.9 %>
-            <strong> High</strong>
-        <% elsif user.suicidal_tweet_count >= 15 and user.suicidal_tweets_probability_average >= 0.8 %>
-            <strong> Moderate</strong>
-        <% else %>
-            <strong> Low</strong>
-        <% end %>
-    <% end %>
+  <%if user.suicidal_index >= 70 %>
+      <strong> High</strong>
+  <%elsif user.suicidal_index >= 40%>
+      <strong> Moderate</strong>
+  <% else %>
+      <strong> Low</strong>
+  <% end %>
 </p>
 <hr>
 <% end %>
