@@ -16,7 +16,7 @@
       <% end %>  
     </div>
       <!-- Top Menu Items -->
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-right" style="margin-right:15px;">
       <% if !logged_in? %>
         <li><%= link_to "Login |", '/login' %></li>
         <li><%=link_to 'Signup', '/signup' %></li>
@@ -36,16 +36,15 @@
             <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
         </li>
         <li>
-            <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+            <a href="/sentiment_results"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
         </li>
         <li>
-            <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
+            <a href="/users"><i class="fa fa-fw fa-file"></i> User Info</a>
         </li>
       </ul>
     </div>
     <!-- /.navbar-collapse -->
   </nav>
-
     <div id="page-wrapper">
 
         <div class="container-fluid">
@@ -56,49 +55,12 @@
                     <h1 class="page-header">
                         Dashboard <small>Statistics Overview</small>
                     </h1>
-                    <ol class="breadcrumb">
-                        <li class="active">
-                            <i class="fa fa-dashboard"></i> Dashboard
-                        </li>
-                    </ol>
                 </div>
             </div>
             <!-- /.row -->
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="alert alert-info alert-dismissable">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features!
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
 
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>New Comments!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-6 col-md-6">
                     <div class="panel panel-green">
                         <div class="panel-heading">
                             <div class="row">
@@ -106,12 +68,12 @@
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
-                                    <div>New Tasks!</div>
+                                    <div class="huge"><%=User.count%></div>
+                                    <div>User Anlaysed</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="#users">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -120,29 +82,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">124</div>
-                                    <div>New Orders!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-6 col-md-6">
                     <div class="panel panel-red">
                         <div class="panel-heading">
                             <div class="row">
@@ -150,8 +90,8 @@
                                     <i class="fa fa-support fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
-                                    <div>Support Tickets!</div>
+                                    <div class="huge"><%=User.where("suicidal_index >= 70").count%></div>
+                                    <div>High Risk</div>
                                 </div>
                             </div>
                         </div>
@@ -172,52 +112,72 @@
                      </div>
             
 
-
-
                 <!-- /.row -->
                 <div id='chartbg'>
                     <div id="chartdiv"></div>
                 </div>
-    
-                
-                <!-- /.row -->
-                    
-
-<h1>Find twitter users who has twitted about suicide related tweets in the past 7 days.</h1><br>
-
+        
+<a id="users">
+<br>
+<h2>Find twitter users who have tweeted about suicide related tweets in the past 7 days.</h2><br>
+<div class ="form-group" style="text-align:center;">
   <%= form_tag("/users", method: "post", class: 'form-overlay') do %>
-  <%= label_tag("Please enter search keyword (maximum 10 words, seperated by 'white space':") %><br>
-  <%= text_field_tag(:search) %>
+  <%= label_tag("Please enter search keyword (maximum 10 words, seperated by 'white space'):") %><br>
+  <%= text_field_tag 'search', '', size: 100 %>
   <%= submit_tag("Search Users", id: 'search-btn') %>
   <% end %>
-
+</div>
 <% if @error %>
   <%= @error %>
 <% end %>
 
-<h1>User Analysis Result</h1>
-<% User.all.each do |user| %>
-<p>Name: <%= link_to user.screen_name, "https://twitter.com/#{user.screen_name}", target: "_blank" %></p>
-<p>Suicidal Tendency:
-  <%if user.suicidal_index >= 70 %>
-      <strong> High</strong>
-  <%elsif user.suicidal_index >= 40%>
-      <strong> Moderate</strong>
-  <% else %>
-      <strong> Low</strong>
-  <% end %>
-</p>
-<hr>
-<% end %>
        <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
-    </div>
-    </div>
+    <script type="text/javascript">
 
-    <!-- /#page-wrapper -->
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
 
-<!-- /#wrapper -->
-<!-- jQuery -->
-<!-- Bootstrap Core JavaScript -->
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
 
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        // Create the data table.
+        // var data = new google.visualization.DataTable();
+        var data = google.visualization.arrayToDataTable([
+            ['UserName', 'Links', 'Suicidal Index'],
+            <% User.all.each do |user| %>
+                [
+                    '<%= user.screen_name %>',
+                     "https://twitter.com/<%= user.screen_name %>",
+                    parseFloat(<%= user.suicidal_index %>)
+                ],
+            <% end %>
+        ]);
+
+        // Set chart options
+        var options = {'title':'Suicidal Index of Each User',
+                      titleTextStyle: {fontSize: '30'},
+                       'width':800,
+                       'height':600
+                    };
+
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 2]);
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+        chart.draw(view, options);
+
+        var selectHandler = function(e) {
+          window.open(data.getValue(chart.getSelection()[0]['row'], 1.));
+        }
+
+        google.visualization.events.addListener(chart, 'select', selectHandler);
+      }
+    </script>
+
+    <!--Div that will hold the bar chart-->
+    <div id="chart_div"></div>

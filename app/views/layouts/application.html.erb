@@ -10,8 +10,8 @@
        <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
       <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
        <script src="https://www.amcharts.com/lib/3/themes/dark.js"></script>
-       <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
- 
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
       <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
  
@@ -37,7 +37,7 @@
         <% end %>  
       </div>
         <!-- Top Menu Items -->
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right", style="margin-right: 15px;">
         <% if !logged_in? %>
           <li><%=link_to "Login", '/login' %></li>
           <li><%=link_to 'Signup', '/signup' %></li>
