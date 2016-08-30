@@ -36,8 +36,8 @@ class TweetsController < ApplicationController
 	
 		# looping through tweets to get more than 200 tweets per query
 		i = 1
-		while i <= 1 do
-			@tweets << @twitter.user_timeline(@user.twitter_user_id.to_i, count: 20, max_id: last_id)
+		while i <= 2 do
+			@tweets << @twitter.user_timeline(@user.twitter_user_id.to_i, count: 100, max_id: last_id)
 	    	last_id = @tweets.last.last.id
 	    	i += 1
 		end
