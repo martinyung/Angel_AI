@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge"><%=User.count%></div>
-                                    <div>User Anlaysed</div>
+                                    <div>User Analysed</div>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="#high-risk">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -118,12 +118,12 @@
                 </div>
         
 <a id="users">
+<a id="high-risk">
 <br>
-<h2>Find twitter users who have tweeted about suicide related tweets in the past 7 days.</h2><br>
+<br>
 <div class ="form-group" style="text-align:center;">
   <%= form_tag("/users", method: "post", class: 'form-overlay') do %>
-  <%= label_tag("Please enter search keyword (maximum 10 words, seperated by 'white space'):") %><br>
-  <%= text_field_tag 'search', '', size: 100 %>
+  <%= text_field_tag 'search', nil, placeholder: 'Enter search term(max 10) seperated by white space', size: 100 %>
   <%= submit_tag("Search Users", id: 'search-btn') %>
   <% end %>
 </div>

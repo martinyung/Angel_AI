@@ -13,9 +13,11 @@
   
 <% end %>
 </div>
-
+<div class="col-md-1"></div>
+<div class="col-md-5">
 <%= form_tag(filtered_results_path, method: "post", class: 'form-overlay') do %>
-	<%= submit_tag("Final Suicidal Analysis", id: 'result-btn') %>
+	<%= submit_tag("Final Suicidal Analysis", id: 'result-btn', class: 'btn btn-primary') %>  
+  </div>
 <% end %>
     <!--Load the AJAX API-->
 <script type="text/javascript">
