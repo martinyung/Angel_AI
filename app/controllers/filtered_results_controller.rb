@@ -5,8 +5,9 @@ class FilteredResultsController < ApplicationController
 	end
 
 	def create
-		@negative_tweets_array = []
+		
 		User.all.each do |user|
+			@negative_tweets_array = []
 			@negative_tweets = user.tweets.where(polarity: ":(")
 			@negative_tweets.each do |tweet|
 				@negative_tweets_array << tweet.text # getting negative tweets by this user

@@ -149,7 +149,7 @@
         // var data = new google.visualization.DataTable();
         var data = google.visualization.arrayToDataTable([
             ['UserName', 'Links', 'Suicidal Index'],
-            <% User.all.each do |user| %>
+            <% User.order(suicidal_index: :desc).all.each do |user| %>
                 [
                     '<%= user.screen_name %>',
                      "https://twitter.com/<%= user.screen_name %>",
