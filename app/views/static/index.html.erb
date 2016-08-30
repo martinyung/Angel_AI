@@ -139,17 +139,17 @@
       // Callback that creates and populates a data table,
       // instantiates the pie chart, passes in the data and
       // draws it.
-      function drawChart() {
 
+      function drawChart() {
         // Create the data table.
-        // var data = new google.visualization.DataTable();
         var data = google.visualization.arrayToDataTable([
-            ['UserName', 'Links', 'Suicidal Index'],
+            ['UserName', 'Links', 'Suicidal Index', { role: 'style' }],
             <% User.order(suicidal_index: :desc).all.each do |user| %>
                 [
                     '<%= user.screen_name %>',
                      "https://twitter.com/<%= user.screen_name %>",
-                    parseFloat(<%= user.suicidal_index %>)
+                    parseFloat(<%= user.suicidal_index %>),
+                    "<%= user.suicidal_index && user.suicidal_index >= 30 ? 'red' : 'blue' %>"
                 ],
             <% end %>
         ]);
@@ -162,7 +162,7 @@
                     };
 
         var view = new google.visualization.DataView(data);
-        view.setColumns([0, 2]);
+        view.setColumns([0, 2, 3]);
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
         chart.draw(view, options);
