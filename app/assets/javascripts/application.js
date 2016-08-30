@@ -24,55 +24,50 @@ google.charts.load('current', {'packages':['corechart']});
 var chartData = [{
 
    "year": "08-22",
-       "cars": 10,
-       "motorcycles": 68, 
-       "bicycles": 91 
+       "cars": 48.8,
+       "motorcycles": 11.2, 
+       "bicycles": 8.8
 }, {
    "year": "08-23",
-       "cars": 97,
-       "motorcycles": 66,
-       "bicycles": 67
+       "cars": 46.2,
+       "motorcycles": 12.2,
+       "bicycles": 8.8
 }, {
    "year": "08-24",
-       "cars": 124,
-       "motorcycles": 64,
-       "bicycles": 93
+       "cars": 43.4,
+       "motorcycles": 11.0,
+       "bicycles": 9.8
 }, {
    "year": "08-25",
-       "cars": 121,
-       "motorcycles": 63,
-       "bicycles": 101
+       "cars":36.8 ,
+       "motorcycles": 10.8,
+       "bicycles": 10.1
 }, {
    "year": "08-26",
-       "cars": 191,
-       "motorcycles": 133,
-       "bicycles": 177
+       "cars": 40.1,
+       "motorcycles": 11.2,
+       "bicycles": 10.0
 }, {
    "year": "08-27",
-       "cars": 129,
-       "motorcycles": 62,
-       "bicycles": 82
+       "cars": 42.3,
+       "motorcycles": 13.2,
+       "bicycles": 10.6
 }, {
    "year": "08-28",
-       "cars": 111,
-       "motorcycles": 10,
-       "bicycles": 105
+       "cars": 39.2,
+       "motorcycles": 16.2,
+       "bicycles": 10.6
 }, {
    "year": "08-29",
-       "cars": 76,
-       "motorcycles": 23,
-       "bicycles": 65
+       "cars": 37.2,
+       "motorcycles": 16.2,
+       "bicycles": 9.8
 }, {
    "year": "08-30",
-       "cars": 114,
-       "motorcycles": 21,
-       "bicycles": 78
-}, {
-   "year": "08-31",
-       "cars": 116,
-       "motorcycles": 20,
-       "bicycles": 70
-}, ];
+       "cars": 39.0,
+       "motorcycles": 15.5,
+       "bicycles": 11.2
+},  ];
 
 var chart =  AmCharts.makeChart("chartdiv", {
     "type": "serial",
@@ -163,7 +158,7 @@ var chart =  AmCharts.makeChart("chartdiv", {
                 "#0066e3",
                 "#802ea9"
             ],
-            "lineAlpha": 0.5,
+            "lineAlpha": 0.7,
             "fillAlphas": 1,
             "lineColor": "#FFFFFF",
             "bullet": "round",
@@ -175,14 +170,14 @@ var chart =  AmCharts.makeChart("chartdiv", {
             "bulletColor": "#5d7ad9",
             "bulletBorderColor": "#FFFFFF",
             "bulletBorderThickness": 1,
-            "balloonText": "<div style='margin-bottom:30px;text-shadow: 2px 2px rgba(0, 0, 0, 0.1); font-weight:200;font-size:30px; color:#ffffff'>[[value]]</div>"
+            "balloonText": "<div style='margin-bottom:30px;text-shadow: 2px 2px rgba(0, 0, 0, 0.1); font-weight:200;font-size:30px; color:#FF5733'>[[value]] acidlipsjpg</div>"
         },
         {
            "id": "g2",
             "title": "Motorcycles",
             "valueField": "motorcycles",
-            "lineAlpha": 0.5,
-            "lineColor": "#FFFFFF",
+            "lineAlpha": 0.7,
+            "lineColor": "#0EFF07",
             "bullet": "round",
             "dashLength": 2,
             "bulletBorderAlpha": 1,
@@ -192,14 +187,14 @@ var chart =  AmCharts.makeChart("chartdiv", {
             "bulletColor": "#5d7ad9",
             "bulletBorderColor": "#FFFFFF",
             "bulletBorderThickness": 1,
-            "balloonText": "<div style='margin-bottom:30px;text-shadow: 2px 2px rgba(0, 0, 0, 0.1); font-weight:200;font-size:30px; color:#000000'>[[value]] juho</div>"
+            "balloonText": "<div style='margin-bottom:30px;text-shadow: 2px 2px rgba(0, 0, 0, 0.1); font-weight:200;font-size:30px; color:#0EFF07'>[[value]] QueenxJessica</div>"
         },
         {
             "id": "g3",
             "title": "Bicycles",
             "valueField": "bicycles",
-            "lineAlpha": 0.5,
-            "lineColor": "#FFFFFF",
+            "lineAlpha": 0.7,
+            "lineColor": "#0EFF07",
             "bullet": "round",
             "dashLength": 2,
             "bulletBorderAlpha": 1,
@@ -209,7 +204,7 @@ var chart =  AmCharts.makeChart("chartdiv", {
             "bulletColor": "#5d7ad9",
             "bulletBorderColor": "#FFFFFF",
             "bulletBorderThickness": 1,
-            "balloonText": "<div style='margin-bottom:30px;text-shadow: 2px 2px rgba(0, 0, 0, 0.1); font-weight:200;font-size:30px; color:#CC3333'>[[value]] girl</div>"
+            "balloonText": "<div style='margin-bottom:30px;text-shadow: 2px 2px rgba(0, 0, 0, 0.1); font-weight:200;font-size:30px; color:#0EFF07'>[[value]] kordeilawley</div>"
         }
     ],
     "chartCursor": {
