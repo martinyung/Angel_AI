@@ -10,7 +10,7 @@
           <span class="icon-bar"></span>
       </button>
       <% if logged_in? %>
-        <a class="navbar-brand" href="/get_user">Angel.AI</a>
+        <a class="navbar-brand" href="/get_user" data-turbolinks='false'>Angel.AI</a>
       <% else %>
         <a class="navbar-brand" href="/">Angel.AI</a>
       <% end %>  
@@ -131,11 +131,7 @@
   <%= @error %>
 <% end %>
 
-       <!-- /.row -->
     <script type="text/javascript">
-
-      // Load the Visualization API and the corechart package.
-      google.charts.load('current', {'packages':['corechart']});
 
       // Set a callback to run when the Google Visualization API is loaded.
       google.charts.setOnLoadCallback(drawChart);

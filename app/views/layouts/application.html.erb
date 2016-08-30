@@ -8,12 +8,11 @@
     <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
     <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
     <script src="https://www.amcharts.com/lib/3/themes/dark.js"></script>
-       
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   </head>
 
   <body>
@@ -26,7 +25,7 @@
             <span class="icon-bar"></span>
         </button>
         <% if logged_in? %>
-          <a class="navbar-brand" href="/get_user">Angel.AI</a>
+          <a class="navbar-brand" href="/get_user" data-turbolinks='false'>Angel.AI</a>
         <% else %>
           <a class="navbar-brand" href="/">Angel.AI</a>
         <% end %>  

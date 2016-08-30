@@ -19,14 +19,7 @@
 //= require plugins/morris/morris.min.js
 //= require plugins/morris/morris-data.js
 
-
-
-
-
-
-
-
-
+google.charts.load('current', {'packages':['corechart']});
 
 var chartData = [{
 
