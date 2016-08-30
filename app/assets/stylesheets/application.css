@@ -13,7 +13,7 @@
  *= require_tree .
  *= require font-awesome
  *= require sb-admin/css/sb-admin
- *= requuire sb-admin/css/plugins/morris
+ *= require sb-admin/css/plugins/morris
  *= require_self
  */
 
