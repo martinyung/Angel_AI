@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
 	def create
 		if params[:search].split.count > 0 and params[:search].split.count < 11
-			@users = @twitter.search(params[:search], lang:"en").take(2)
+			@users = @twitter.search(params[:search], lang:"en").take(1)
 			@users.each do |user|
 				User.find_or_create_by(screen_name: user.user.screen_name, twitter_user_id: user.user.id)
 			end

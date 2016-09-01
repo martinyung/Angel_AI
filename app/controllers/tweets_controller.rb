@@ -7,17 +7,14 @@ class TweetsController < ApplicationController
 			@tweets = get_tweets(user.id)
 			if user.tweets.count == 0 # new user have no tweet
 				@tweets.each do |tweet|
-				# analyse the sentiment of each tweet
-					result = Sentimentalizer.analyze(tweet.full_text)
-					user.tweets.create(text: tweet.full_text, twitter_tweet_id: tweet.id, polarity: result.sentiment, polarity_confidence: result.overall_probability)
+					CreateTweetsJob.perform_later(user.id, tweet.full_text, tweet.id)
 				end
 			else
 				@tweets.each do |tweet|
 				# prevent duplicate tweets being store in database
 					if user.tweets.pluck(:twitter_tweet_id).include?(tweet.id.to_s)
 					else
-						result = Sentimentalizer.analyze(tweet.full_text)
-						user.tweets.create(text: tweet.full_text, twitter_tweet_id: tweet.id, polarity: result.sentiment, polarity_confidence: result.overall_probability)
+						CreateTweetsJob.perform_later(user.id, tweet.full_text, tweet.id)
 					end
 				end
 			end
@@ -36,8 +33,8 @@ class TweetsController < ApplicationController
 	
 		# looping through tweets to get more than 200 tweets per query
 		i = 1
-		while i <= 2 do
-			@tweets << @twitter.user_timeline(@user.twitter_user_id.to_i, count: 100, max_id: last_id)
+		while i <= 1 do
+			@tweets << @twitter.user_timeline(@user.twitter_user_id.to_i, count: 10, max_id: last_id)
 	    	last_id = @tweets.last.last.id
 	    	i += 1
 		end
